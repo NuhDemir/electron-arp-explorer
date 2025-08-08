@@ -1,0 +1,51 @@
+{
+  "name": "electron-arp-explorer-pro",
+  "version": "1.0.0",
+  "description": "Gelişmiş bir ARP ve Ağ Tarama Aracı",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "concurrently \"npm:vite-dev\" \"npm:electron-dev\"",
+    "vite-dev": "vite",
+    "electron-dev": "wait-on tcp:5173 && cross-env IS_DEV=true electron .",
+    "build": "vite build && electron-builder",
+    "postinstall": "electron-builder install-app-deps"
+  },
+  "keywords": [
+    "electron",
+    "react",
+    "arp",
+    "network"
+  ],
+  "author": "AI Assistant",
+  "license": "MIT",
+  "dependencies": {
+    "csv-writer": "^1.6.0",
+    "ping": "^0.4.4"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.1",
+    "concurrently": "^8.2.2",
+    "cross-env": "^7.0.3",
+    "electron": "^31.0.1",
+    "electron-builder": "^24.13.3",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "vite": "^5.2.13",
+    "wait-on": "^7.2.0"
+  },
+  "build": {
+    "appId": "com.example.arpexplorer",
+    "files": [
+      "dist/renderer/**/*",
+      "main.js",
+      "preload.js",
+      "package.json",
+      "src/services/**/*"
+    ],
+    "directories": {
+      "buildResources": "assets",
+      "output": "release"
+    }
+  }
+}
